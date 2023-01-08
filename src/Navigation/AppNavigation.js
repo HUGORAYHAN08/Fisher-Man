@@ -57,9 +57,17 @@ const AppNavigation = () => {
         component={MainApp}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="FishDetail" component={FishDetail} />
+      <Stack.Screen
+        name="FishDetail"
+        component={FishDetail}
+        options={{ title: "Harga Ikan" }}
+      />
 
-      <Stack.Screen name="BeritaDetail" component={BeritaDetail} />
+      <Stack.Screen
+        name="BeritaDetail"
+        component={BeritaDetail}
+        options={{ title: "Berita" }}
+      />
     </Stack.Navigator>
   );
 };
