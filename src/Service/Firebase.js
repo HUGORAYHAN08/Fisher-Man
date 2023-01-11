@@ -1,11 +1,11 @@
-// import { useNavigation } from "@react-navigation/native";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { Alert } from "react-native";
 import { Auth } from "./Auth";
-// const navigation = useNavigation();
+
+import { useNavigation } from "@react-navigation/native";
 
 export const keyWeather = {
   apikey: `56709fad06fcd50734c856830771bfa3`,

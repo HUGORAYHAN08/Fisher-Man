@@ -1,14 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Button } from "native-base";
+import { Box, Button } from "native-base";
 import Firebase from "../../Service/Firebase";
+import ButtonN from "../../Components/MyButton";
+import MyButton from "../../Components/MyButton";
 
 const SettingScreen = () => {
   return (
-    <View>
-      <Text>SettingScreen</Text>
-      <Button onPress={() => Firebase.Signout()}>Sign Out</Button>
-    </View>
+    <Box>
+      <MyButton text="Pengaturan Akun" />
+      <MyButton text="Kebijakan Privasi" />
+      <MyButton text="Pusat Bantuan" />
+      <MyButton text="Pelabuhan Jawa Timur" />
+      <MyButton text="Keluar" onPress={() => Firebase.Signout()} />
+
+      {/* <Button }>Sign Out</Button> */}
+    </Box>
   );
 };
 

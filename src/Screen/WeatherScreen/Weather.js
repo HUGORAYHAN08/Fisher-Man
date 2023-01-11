@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, StyleSheet } from "react-native";
+import { Image, View, StyleSheet, Alert } from "react-native";
 import { Heading, HStack, Box, Divider, Text, Input } from "native-base";
 
 import * as Location from "expo-location";
@@ -88,14 +88,19 @@ const Weather = () => {
     setWetherData(data);
   };
 
+  let coba = () => {
+    return Alert.alert("Coba Hubungi No. Dibawah ini Bayu (082279292661)");
+  };
+
   return (
     <View style={styles.cover}>
       <Input
         variant="rounded"
-        placeholder="Round"
+        placeholder="Search"
         width={300}
         backgroundColor="#FFFFFF"
         m={3}
+        onPressIn={coba}
       />
       <Heading color="#FFFFFF">{weatherData.name}</Heading>
       <Image
@@ -108,7 +113,7 @@ const Weather = () => {
         {weatherData.weather[0].main}
       </Text>
       <Heading color="#FFFFFF" size="xl">
-        {Math.round(weatherData.main.temp)}°C
+        {Math.round((weatherData.main.temp / 100) * 10)}°C
       </Heading>
       <Divider />
       <HStack space={20} alignItems="center" justifyContent="center" mt={3}>
@@ -124,7 +129,9 @@ const Weather = () => {
             source={require("../../../assets/feels_like.png")}
             style={{ width: 30, height: 30 }}
           />
-          <Heading size="sm">{weatherData.main.feels_like}°C</Heading>
+          <Heading size="sm">
+            {Math.round((weatherData.main.feels_like / 100) * 10)}°C
+          </Heading>
           <Text>feels like</Text>
         </Box>
         <Box

@@ -25,13 +25,13 @@ const MainApp = () => {
           } else if (route.name === "BBM") {
             iconName = focused ? "flame" : "flame";
           } else if (route.name === "Fish") {
-            iconName = focused ? "fast-food-sharp" : "fast-food-sharp";
+            iconName = focused ? "basket" : "basket";
           } else if (route.name === "Setting") {
             iconName = focused ? "settings-sharp" : "settings-sharp";
           }
 
           // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return <Ionicons name={iconName} size={30} color={color} />;
         },
         tabBarActiveTintColor: "black",
         tabBarInactiveTintColor: "gray",

@@ -12,7 +12,7 @@ import {
   ScrollView,
   Text,
 } from "native-base";
-import Firebase from "../../Service/Firebase";
+import Firebase from "../../Service/Auth";
 import Weather from "../WeatherScreen/Weather";
 import {
   ImageHeaderScrollView,
