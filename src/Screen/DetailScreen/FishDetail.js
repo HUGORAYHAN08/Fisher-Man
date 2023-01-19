@@ -34,6 +34,11 @@ const FishDetail = (data) => {
     }
   };
 
+  HandleClear = () => {
+    setBerat(0);
+    setTotal(0);
+  };
+
   return (
     <NativeBaseProvider>
       <Box>
@@ -134,7 +139,8 @@ const FishDetail = (data) => {
                     Rp
                   </Text>
                   <Text w={150} pl={2}>
-                    {doc.harga}
+                    {doc.harga.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    {""}
                   </Text>
                 </Center>
               </HStack>
@@ -165,7 +171,8 @@ const FishDetail = (data) => {
                     Rp
                   </Text>
                   <Text w={150} pl={2}>
-                    {total}
+                    {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                    {""}
                   </Text>
                 </Center>
               </HStack>
@@ -187,7 +194,7 @@ const FishDetail = (data) => {
                 borderRadius={15}
                 borderColor={"#2D3192"}
                 mt={3}
-                onPress={() => setBerat(0)}
+                onPress={HandleClear}
               >
                 <Text color={"#2D3192"} fontWeight={"bold"}>
                   Clear

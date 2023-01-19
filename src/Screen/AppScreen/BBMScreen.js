@@ -18,12 +18,12 @@ const BBMScreen = () => {
   const [jarak, setJarak] = useState();
 
   cobaPertama = () => {
-    console.log(litter);
-    if (litter == undefined || litter == 0) {
+    console.log(jarak);
+    if (jarak == undefined || jarak == 0) {
       return Alert.alert("Mohon Masukan Data");
     } else {
-      const total = 5 * litter;
-      setJarak(total);
+      const total = jarak / 5;
+      setLitter(total);
     }
   };
 
@@ -39,28 +39,52 @@ const BBMScreen = () => {
               w={"300px"}
               h={"150px"}
             />
-            <Heading>Masukan Jumlah BBM</Heading>
+            <Heading>Masukan Jarak Tempuh</Heading>
             <Input
               variant="underlined"
-              placeholder="Maukan BBm"
+              placeholder="Maukan Jarak"
               mt={18}
               w={300}
               fontSize={20}
-              value={litter}
-              onChangeText={(e) => setLitter(e)}
+              value={jarak}
+              onChangeText={(e) => setJarak(e)}
             />
-            <Box>
+            <Box my={5}>
               <Heading textAlign={"center"}>Rincian</Heading>
-              <HStack space={5}>
-                <Text fontSize="2xl">Jarak</Text>
-                <Text fontSize="2xl">:</Text>
-                <Text fontSize="2xl">{jarak}</Text>
-                <Text fontSize="2xl">KM</Text>
+              <HStack space={10}>
+                <Text fontSize="xl">Jarak</Text>
+                <Text fontSize="xl">:</Text>
+                <HStack space={3}>
+                  <Text fontSize="xl">{jarak}</Text>
+                  <Text fontSize="xl">Mil</Text>
+                </HStack>
+              </HStack>
+              <HStack space={10}>
+                <Text fontSize="xl">BBM</Text>
+                <Text fontSize="xl">:</Text>
+                <HStack space={3}>
+                  <Text fontSize="xl">{litter}</Text>
+                  <Text fontSize="xl">litter</Text>
+                </HStack>
               </HStack>
             </Box>
-            <Button onPress={cobaPertama} w={300} mt={"80%"}>
-              <Text>Submit</Text>
-            </Button>
+            <VStack space={2} w={300} mt={"50%"}>
+              <Button
+                onPress={cobaPertama}
+                borderRadius={20}
+                backgroundColor={"#2D3192"}
+                h={50}
+              >
+                <Text color={"white"}>Submit</Text>
+              </Button>
+              <Button
+                variant="outline"
+                borderColor={"#2D3192"}
+                borderRadius={20}
+              >
+                <Text>Clear</Text>
+              </Button>
+            </VStack>
           </Center>
         </VStack>
       </Box>

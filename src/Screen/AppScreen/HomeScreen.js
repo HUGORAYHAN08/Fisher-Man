@@ -1,4 +1,9 @@
-import { StyleSheet, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  RefreshControl,
+} from "react-native";
 import React, { useState } from "react";
 import {
   Box,

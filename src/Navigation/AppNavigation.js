@@ -9,6 +9,7 @@ import BBMScreen from "../Screen/AppScreen/BBMScreen";
 import BeritaDetail from "../Screen/DetailScreen/BeritaDetail";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
+import AkunScreen from "../Screen/DetailScreen/AkunScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -67,6 +68,11 @@ const AppNavigation = () => {
         name="BeritaDetail"
         component={BeritaDetail}
         options={{ title: "Berita" }}
+      />
+      <Stack.Screen
+        name="AkunScreen"
+        component={AkunScreen}
+        options={{ title: "Akun" }}
       />
     </Stack.Navigator>
   );

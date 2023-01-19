@@ -27,6 +27,7 @@ const SignUpScreen = ({ navigation }) => {
         <Center mt={20}>
           <Image
             source={require("../../../assets/LogoApp.png")}
+            alt={"LogoApp"}
             size="lg"
             width={300}
             height={150}

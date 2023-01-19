@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
 import React, { useEffect, useState } from "react";
 import { db } from "../../Service/Auth";
 import { collection, getDocs } from "firebase/firestore";
@@ -10,19 +10,35 @@ import {
   HStack,
   NativeBaseProvider,
   Image,
+  Spinner,
 } from "native-base";
 
 const FishScreen = ({ navigation }) => {
   const [dataikan, setDataIkan] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [isRefresh, setIsRefresh] = useState(false);
 
   useEffect(() => {
     getDataFish();
   }, []);
 
   getDataFish = async () => {
-    const hasil = await getDocs(collection(db, "dataFish"));
-    console.log(hasil.docs.map((doc) => doc.data()));
-    setDataIkan(hasil.docs.map((doc) => doc.data()));
+    try {
+      const hasil = await getDocs(collection(db, "dataFish"));
+      console.log(hasil.docs.map((doc) => doc.data()));
+      setDataIkan(hasil.docs.map((doc) => doc.data()));
+    } catch (err) {
+      Alert.alert(err);
+    } finally {
+      setIsLoading(false);
+      setIsRefresh(false);
+    }
+  };
+
+  handleRefresh = () => {
+    setIsLoading(true);
+    setIsRefresh(true);
+    getDataFish();
   };
 
   const renderFish = ({ item, index }) => {
@@ -48,20 +64,30 @@ const FishScreen = ({ navigation }) => {
   };
 
   return (
-    <NativeBaseProvider>
-      <Center>
-        <FlatList
-          numColumns={2}
-          columnWrapperStyle={{
-            justifyContent: "space-evenly",
-            alignItems: "center",
-          }}
-          data={dataikan}
-          renderItem={renderFish}
-          width={400}
-        />
-      </Center>
-    </NativeBaseProvider>
+    // <NativeBaseProvider>
+    <>
+      {isLoading ? (
+        <Center flex={1}>
+          <Spinner size={"lg"} colorScheme={"primary"} />
+        </Center>
+      ) : (
+        <Center>
+          <FlatList
+            numColumns={2}
+            columnWrapperStyle={{
+              justifyContent: "space-evenly",
+              alignItems: "center",
+            }}
+            onRefresh={handleRefresh}
+            refreshing={isRefresh}
+            data={dataikan}
+            renderItem={renderFish}
+            width={400}
+          />
+        </Center>
+      )}
+    </>
+    // </NativeBaseProvider>
   );
 };
 

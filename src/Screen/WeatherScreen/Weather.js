@@ -1,6 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Image, View, StyleSheet, Alert } from "react-native";
-import { Heading, HStack, Box, Divider, Text, Input } from "native-base";
+import {
+  Image,
+  View,
+  StyleSheet,
+  Alert,
+  ScrollView,
+  RefreshControl,
+} from "react-native";
+import {
+  Heading,
+  HStack,
+  Box,
+  Divider,
+  Text,
+  Input,
+  Center,
+} from "native-base";
 
 import * as Location from "expo-location";
 import { keyWeather } from "../../Service/Firebase";
@@ -8,6 +23,7 @@ import { keyWeather } from "../../Service/Firebase";
 const Weather = () => {
   // const [location, setLocation] = useState(null);
 
+  const [refresh, setRefresh] = useState(false);
   const [lon, setLon] = useState();
   const [lat, setLat] = useState();
   const [weatherData, setWetherData] = useState({
@@ -60,6 +76,14 @@ const Weather = () => {
     cod: "",
   });
 
+  const onRefresh = () => {
+    setRefresh(true);
+    setTimeout(() => {
+      position();
+      setRefresh(false);
+    }, 2000);
+  };
+
   useEffect(() => {
     position();
   }, []);
@@ -89,7 +113,7 @@ const Weather = () => {
   };
 
   let coba = () => {
-    return Alert.alert("Coba Hubungi No. Dibawah ini Bayu (082279292661)");
+    return Alert.alert("Coba hubungi Bayu(082279292661)");
   };
 
   return (
@@ -102,54 +126,62 @@ const Weather = () => {
         m={3}
         onPressIn={coba}
       />
-      <Heading color="#FFFFFF">{weatherData.name}</Heading>
-      <Image
-        style={styles.image}
-        source={{
-          uri: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`,
-        }}
-      />
-      <Text fontSize="lg" color="#FFFFFF">
-        {weatherData.weather[0].main}
-      </Text>
-      <Heading color="#FFFFFF" size="xl">
-        {Math.round((weatherData.main.temp / 100) * 10)}°C
-      </Heading>
-      <Divider />
-      <HStack space={20} alignItems="center" justifyContent="center" mt={3}>
-        <Box
-          backgroundColor="#FFFFFF"
-          width={85}
-          height={100}
-          alignItems="center"
-          justifyContent="center"
-          borderRadius={20}
-        >
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={refresh} onRefresh={onRefresh} />
+        }
+      >
+        <Center>
+          <Heading color="#FFFFFF">{weatherData.name}</Heading>
           <Image
-            source={require("../../../assets/feels_like.png")}
-            style={{ width: 30, height: 30 }}
+            style={styles.image}
+            source={{
+              uri: `http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@4x.png`,
+            }}
           />
-          <Heading size="sm">
-            {Math.round((weatherData.main.feels_like / 100) * 10)}°C
+          <Text fontSize="lg" color="#FFFFFF">
+            {weatherData.weather[0].main}
+          </Text>
+          <Heading color="#FFFFFF" size="xl">
+            {Math.round((weatherData.main.temp / 100) * 10)}°C
           </Heading>
-          <Text>feels like</Text>
-        </Box>
-        <Box
-          backgroundColor="#FFFFFF"
-          width={85}
-          height={100}
-          alignItems="center"
-          justifyContent="center"
-          borderRadius={20}
-        >
-          <Image
-            source={require("../../../assets/humidity.png")}
-            style={{ width: 25, height: 30 }}
-          />
-          <Heading size="sm">{weatherData.main.humidity}%</Heading>
-          <Text>humidity</Text>
-        </Box>
-      </HStack>
+        </Center>
+        <Divider w={400} />
+        <HStack space={20} alignItems="center" justifyContent="center" mt={3}>
+          <Box
+            backgroundColor="#FFFFFF"
+            width={85}
+            height={100}
+            alignItems="center"
+            justifyContent="center"
+            borderRadius={20}
+          >
+            <Image
+              source={require("../../../assets/feels_like.png")}
+              style={{ width: 30, height: 30 }}
+            />
+            <Heading size="sm">
+              {Math.round((weatherData.main.feels_like / 100) * 10)}°C
+            </Heading>
+            <Text>feels like</Text>
+          </Box>
+          <Box
+            backgroundColor="#FFFFFF"
+            width={85}
+            height={100}
+            alignItems="center"
+            justifyContent="center"
+            borderRadius={20}
+          >
+            <Image
+              source={require("../../../assets/humidity.png")}
+              style={{ width: 25, height: 30 }}
+            />
+            <Heading size="sm">{weatherData.main.humidity}%</Heading>
+            <Text>humidity</Text>
+          </Box>
+        </HStack>
+      </ScrollView>
     </View>
   );
 };

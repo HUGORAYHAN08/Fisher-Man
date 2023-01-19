@@ -1,9 +1,11 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updatePassword,
 } from "firebase/auth";
 import { Alert } from "react-native";
 import { Auth } from "./Auth";
+const user = Auth.currentUser;
 
 import { useNavigation } from "@react-navigation/native";
 
