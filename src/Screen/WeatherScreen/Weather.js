@@ -113,7 +113,7 @@ const Weather = () => {
   };
 
   let coba = () => {
-    return Alert.alert("Coba hubungi Bayu(082279292661)");
+    return Alert.alert("Sedang Dalam Pengembangan");
   };
 
   return (

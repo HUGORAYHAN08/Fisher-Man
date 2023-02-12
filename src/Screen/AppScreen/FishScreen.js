@@ -24,7 +24,7 @@ const FishScreen = ({ navigation }) => {
 
   getDataFish = async () => {
     try {
-      const hasil = await getDocs(collection(db, "dataFish"));
+      const hasil = await getDocs(collection(db, "DataFish"));
       console.log(hasil.docs.map((doc) => doc.data()));
       setDataIkan(hasil.docs.map((doc) => doc.data()));
     } catch (err) {

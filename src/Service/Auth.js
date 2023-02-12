@@ -5,13 +5,12 @@ import { getFirestore } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAIdVJE3eCu4NXftqQ38KjbqkmwozLMKyI",
-  authDomain: "fisherman-afa2c.firebaseapp.com",
-  databaseURL: "https://fisherman-afa2c-default-rtdb.firebaseio.com",
-  projectId: "fisherman-afa2c",
-  storageBucket: "fisherman-afa2c.appspot.com",
-  messagingSenderId: "481434304789",
-  appId: "1:481434304789:web:1475fc8944c20bcf59a91c",
+  apiKey: "AIzaSyDPRVX37_oCnQJ17fj5Azt7-1WuNjtqGas",
+  authDomain: "rpl-fisherman.firebaseapp.com",
+  projectId: "rpl-fisherman",
+  storageBucket: "rpl-fisherman.appspot.com",
+  messagingSenderId: "501491809171",
+  appId: "1:501491809171:web:2a8cb589696b8d8e570666"
 };
 
 // Initialize Firebase

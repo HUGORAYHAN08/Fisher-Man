@@ -7,12 +7,12 @@ import MyButton from "../../Components/MyButton";
 
 const SettingScreen = ({ navigation }) => {
   const createThreeButtonAlert = () =>
-    Alert.alert("Yakin Anda mau Keluar", "Coba Pikirkan Lagi !!!", [
+    Alert.alert("Konfirmasi", "Anda Yakin akan Keluar", [
       {
-        text: "Cancel",
+        text: "Tidak",
         style: "cancel",
       },
-      { text: "OK", onPress: () => Firebase.Signout() },
+      { text: "ya", onPress: () => Firebase.Signout() },
     ]);
 
   return (
@@ -21,9 +21,18 @@ const SettingScreen = ({ navigation }) => {
         text="Pengaturan Akun"
         onPress={() => navigation.navigate("AkunScreen")}
       />
-      <MyButton text="Kebijakan Privasi" />
-      <MyButton text="Pusat Bantuan" />
-      <MyButton text="Pelabuhan Jawa Timur" />
+      <MyButton
+        text="Kebijakan Privasi"
+        onPress={() => navigation.navigate("KebijakanPrivase")}
+      />
+      <MyButton
+        text="Tentang Aplikasi"
+        onPress={() => navigation.navigate("TentangAplikasi")}
+      />
+      <MyButton
+        text="Pelabuhan Jawa Timur"
+        onPress={() => navigation.navigate("PelabuhanScreen")}
+      />
       <MyButton text="Keluar" onPress={createThreeButtonAlert} />
     </Box>
   );

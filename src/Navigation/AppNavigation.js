@@ -10,6 +10,9 @@ import BeritaDetail from "../Screen/DetailScreen/BeritaDetail";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import AkunScreen from "../Screen/DetailScreen/AkunScreen";
+import PelabuhanScreen from "../Screen/DetailScreen/PelabuhanScreen";
+import Privasi from "../Screen/DetailScreen/Privasi";
+import AboutScreen from "../Screen/DetailScreen/AboutScreen";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,6 +76,21 @@ const AppNavigation = () => {
         name="AkunScreen"
         component={AkunScreen}
         options={{ title: "Akun" }}
+      />
+      <Stack.Screen
+        name="PelabuhanScreen"
+        component={PelabuhanScreen}
+        options={{ title: "Pelabuhan Jawa Timur" }}
+      />
+      <Stack.Screen
+        name="KebijakanPrivase"
+        component={Privasi}
+        options={{ title: "Kebijakan Privasi" }}
+      />
+      <Stack.Screen
+        name="TentangAplikasi"
+        component={AboutScreen}
+        options={{ title: "Tentang Aplikasi" }}
       />
     </Stack.Navigator>
   );

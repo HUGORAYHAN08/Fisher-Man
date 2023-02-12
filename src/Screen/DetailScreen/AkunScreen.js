@@ -4,7 +4,7 @@ import { Box, Button, Center, Heading, Input, Text, VStack } from "native-base";
 import { Alert, View } from "react-native";
 import React, { Component } from "react";
 import { updatePassword } from "firebase/auth";
-import { useNavigation } from "@react-navigation/native";
+import Firebase from "../../Service/Firebase";
 
 export class AkunScreen extends Component {
   constructor(props) {
@@ -32,13 +32,12 @@ export class AkunScreen extends Component {
     } else if (this.state.password != this.state.newPassword) {
       Alert.alert("Mohon isi data dengan sesuai");
     } else {
-      Alert.alert("Yakin Anda mau ubah sandi", "bolehh", [
+      Alert.alert("Konfirmasi", "Yakin Anda mau ubah sandi", [
         {
           text: "Cancel",
-
           style: "cancel",
         },
-        { text: "OK", onPress: () => console.log("OK Pressed") },
+        { text: "ya", onPress: () => this.onUpdate() },
       ]);
     }
   };
@@ -52,21 +51,25 @@ export class AkunScreen extends Component {
             <VStack>
               <Input
                 variant="underlined"
-                placeholder="newPassword"
+                placeholder="new Password"
                 w={300}
+                my={2}
                 onChangeText={(e) => {
                   this.setState({ password: e });
                 }}
               />
               <Input
                 variant="underlined"
-                placeholder="newPassword"
+                placeholder="Confirm Password"
                 w={300}
+                my={2}
                 onChangeText={(e) => {
                   this.setState({ newPassword: e });
                 }}
               />
-              <Button onPress={this.onChangeUpdate}>Reset</Button>
+              <Button onPress={this.onChangeUpdate} mt={5}>
+                Reset
+              </Button>
             </VStack>
           </Box>
         </Center>

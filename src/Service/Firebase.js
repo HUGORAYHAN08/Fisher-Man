@@ -37,6 +37,10 @@ const Signout = () => {
     .catch((error) => alert(error.message));
 };
 
+const signGoogle = () => {
+  return signInWithPopup(Auth, provider);
+};
+
 const Firebase = {
   Signup,
   Signin,

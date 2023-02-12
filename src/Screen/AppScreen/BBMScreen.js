@@ -27,6 +27,11 @@ const BBMScreen = () => {
     }
   };
 
+  const handleClean = () => {
+    setJarak(0);
+    setLitter(0);
+  };
+
   return (
     <NativeBaseProvider>
       <Box>
@@ -42,14 +47,14 @@ const BBMScreen = () => {
             <Heading>Masukan Jarak Tempuh</Heading>
             <Input
               variant="underlined"
-              placeholder="Maukan Jarak"
+              placeholder="Masukan Jarak"
               mt={18}
               w={300}
               fontSize={20}
               value={jarak}
               onChangeText={(e) => setJarak(e)}
             />
-            <Box my={5}>
+            <Box my={25}>
               <Heading textAlign={"center"}>Rincian</Heading>
               <HStack space={10}>
                 <Text fontSize="xl">Jarak</Text>
@@ -68,7 +73,7 @@ const BBMScreen = () => {
                 </HStack>
               </HStack>
             </Box>
-            <VStack space={2} w={300} mt={"50%"}>
+            <VStack space={2} w={300} mt={"35%"}>
               <Button
                 onPress={cobaPertama}
                 borderRadius={20}
@@ -81,6 +86,7 @@ const BBMScreen = () => {
                 variant="outline"
                 borderColor={"#2D3192"}
                 borderRadius={20}
+                onPress={handleClean}
               >
                 <Text>Clear</Text>
               </Button>
